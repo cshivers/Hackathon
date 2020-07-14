@@ -1,4 +1,5 @@
-﻿using Hackathon.Core.Services;
+﻿using Hackathon.Core.Blitz;
+using Hackathon.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace Hackathon.Core
                     .AddHttpClient()
                     .AddScoped<BlitzService>()
                     .AddScoped<PlayerService>()
-                    .AddScoped<MetaService>();
+                    .AddScoped<MetaService>()
+                    .AddScoped<BlitzResponseMapper>();
     }
 }

@@ -11,11 +11,13 @@ namespace Hackathon.Core.Services
     {
         private readonly MetaService metaService;
         private readonly BlitzService blitzService;
+        private readonly BlitzResponseMapper blitzResponseMapper;
 
-        public PlayerService(MetaService metaService, BlitzService blitzService)
+        public PlayerService(MetaService metaService, BlitzService blitzService, BlitzResponseMapper blitzResponseMapper)
         {
             this.metaService = metaService;
             this.blitzService = blitzService;
+            this.blitzResponseMapper = blitzResponseMapper;
         }
         public async Task<Player> GetPlayerAsync(string playerId)
         {
@@ -23,23 +25,8 @@ namespace Hackathon.Core.Services
             var blitzResponse = await blitzService.GetPlayer(playerId);
 
             // map it to our model
-            return GetPlayerFromBlitzResponse(blitzResponse); // in a real world application, we might have a factory responsible for this
+            return blitzResponseMapper.MapToPlayer(blitzResponse);
         }
-        private Player GetPlayerFromBlitzResponse(BlitzResponse blitzResponse)
-        {
-            var player =  new Player
-            {
-                Id = Guid.Parse(blitzResponse.Id), // if we have time, maybe add some safety checks to these
-                Name = $"{blitzResponse.Name} #{blitzResponse.Tag}",
-                Rank = metaService.GetRankTier(blitzResponse.Ranks.Competitive.Tier)
-                // TODO: LifetimeStats come from blitzResponse.Stats.Competitive.Career
-                // TODO: RecentStats come from blitzResponse.Stats.Competitive.Last20
-                // The two properties above share types in both our Model and the BlitzResponse
-                // It might be useful to create another helper method to save on code
-                // While we're at it, using extension methods for each of these wouldn't be a bad idea ;)
-            };
 
-            return player;
-        }
     }
 }
