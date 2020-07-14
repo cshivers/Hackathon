@@ -13,14 +13,20 @@ namespace Hackathon.WebApi
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var configBuilder = new ConfigurationBuilder()
+                 .AddJsonFile("metaConfig.json");
+
+            var config = configBuilder.Build();
+
+            CreateHostBuilder(args,config).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        public static IHostBuilder CreateHostBuilder(string[] args, IConfiguration config) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseConfiguration(config);
                 });
     }
 }

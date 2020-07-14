@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hackathon.Core;
+using Hackathon.Core.Services;
+using Hackathon.Data;
+using Hackathon.Data.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +29,8 @@ namespace Hackathon.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<MetaConfig>(Configuration.GetSection("MetaConfig")); // add our meta info for the lookups
+            services.AddCoreDepenencies(); // this is where the Core dependency injection happens
             services.AddControllers();
         }
 

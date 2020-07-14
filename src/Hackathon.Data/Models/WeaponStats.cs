@@ -4,8 +4,7 @@ using System.Text;
 
 namespace Hackathon.Data.Models
 {
-    public class Profile
+    public class WeaponStats
     {
-        // adding this as a placeholder; change this to whatever makes sense
     }
 }
