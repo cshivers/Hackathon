@@ -23,6 +23,6 @@ namespace Hackathon.Core
                     .AddScoped<BlitzService>()
                     .AddScoped<PlayerService>()
                     .AddScoped<MetaService>()
-                    .AddSingleton<BlitzResponseMapper>();
+                    .AddScoped<BlitzResponseMapper>();
     }
 }
