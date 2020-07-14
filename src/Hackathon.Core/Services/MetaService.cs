@@ -15,8 +15,10 @@ namespace Hackathon.Core.Services
         }
         public string GetAgentName(string id)
         {
-            // TODO: pull the corresponding value from meta config and return a default string "ex: N/A"
-            throw new NotImplementedException();
+            var key = id;
+            if (!metaConfig.Agents.ContainsKey(key)) return null;
+
+            return metaConfig.Agents[key];
         }
         public string GetRankTier(int id)
         {
@@ -27,8 +29,10 @@ namespace Hackathon.Core.Services
         }
         public string GetWeaponName(string id)
         {
-            // TODO: pull the corresponding value from meta config and return a default string "ex: N/A"
-            throw new NotImplementedException();
+            var key = id;
+            if (!metaConfig.Weapons.ContainsKey(key)) return null;
+
+            return metaConfig.Weapons[key];
         }
 
     }
