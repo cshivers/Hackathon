@@ -64,7 +64,7 @@ namespace Hackathon.Core.Services
 
         private Task<Player> GetOrCreatePlayerObject(string playerId)
         {
-            return _cache.GetOrCreateAsync(KEY, async entry =>
+            return _cache.GetOrCreateAsync($"{KEY}_{playerId}", async entry =>
             {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5);
 
