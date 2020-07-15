@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hackathon.Core.Blitz
+namespace Hackathon.Core.Blitz.Models
 {
     public class BlitzResponse
     {

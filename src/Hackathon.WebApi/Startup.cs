@@ -32,6 +32,7 @@ namespace Hackathon.WebApi
             services.Configure<MetaConfig>(Configuration.GetSection("MetaConfig")); // add our meta info for the lookups
             services.AddCoreDepenencies(); // this is where the Core dependency injection happens
             services.AddControllers();
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
