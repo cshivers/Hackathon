@@ -1,43 +1,46 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Hackathon.Core.Blitz.Models;
 using Hackathon.Core.Services;
 using Hackathon.Data.Models;
 
 namespace Hackathon.Core.Blitz
 {
     public class BlitzResponseMapper
+        : IBlitzResponseMapper
     {
-        private readonly MetaService metaService;
+        private readonly IMetaService _metaService;
 
-        public BlitzResponseMapper(MetaService metaService)
+        public BlitzResponseMapper(IMetaService metaService)
         {
-            this.metaService = metaService;
+            _metaService = metaService;
         }
 
         public Player MapToPlayer(BlitzResponse blitzResponse)
         {
-            var player =  new Player
+            Player player =  new Player
             {
                 Id            = Guid.Parse(blitzResponse.Id),
                 Name          = $"{blitzResponse.Name} #{blitzResponse.Tag}",
-                Rank          = metaService.GetRankTier(blitzResponse.Ranks.Competitive.Tier),
-                LifetimeStats = this.MapToPlayerStats(blitzResponse.Stats.Competitive.Career),
-                RecentStats   = this.MapToPlayerStats(blitzResponse.Stats.Competitive.Last20),
+                Rank          = _metaService.GetRankTier(blitzResponse.Ranks.Competitive.Tier),
+                LifetimeStats = MapToPlayerStats(blitzResponse.Stats.Competitive.Career),
+                RecentStats   = MapToPlayerStats(blitzResponse.Stats.Competitive.Last20),
             };
             return player;
         }
 
         private Data.Models.Stats MapToPlayerStats(CompetitiveStatsDetail competitiveStatsDetail)
         {
-            var playerStats = new Data.Models.Stats();
-            var weaponStats = competitiveStatsDetail.WeaponDamageStats;
-            var mapStats    = competitiveStatsDetail.MapStats;
-            var agentStats  = competitiveStatsDetail.AgentsStats;
+            Data.Models.Stats playerStats = new Data.Models.Stats();
+            Dictionary<string, DamageStats> weaponStats = competitiveStatsDetail.WeaponDamageStats;
+            Dictionary<string, Models.MapStats> mapStats = competitiveStatsDetail.MapStats;
+            Dictionary<string, Models.AgentStats> agentStats = competitiveStatsDetail.AgentsStats;
 
             playerStats.WeaponStats = weaponStats.Select(x => new Data.Models.WeaponStats()
             {
                 WeaponId       = Guid.Parse(x.Key),
-                WeaponName     = metaService.GetWeaponName(x.Key),
+                WeaponName     = _metaService.GetWeaponName(x.Key),
                 TotalKillRange = weaponStats[x.Key].TotalKillRange,
                 AltFireKills   = weaponStats[x.Key].AltFireKills,
                 Headshots      = weaponStats[x.Key].Headshots,
@@ -63,7 +66,7 @@ namespace Hackathon.Core.Blitz
             playerStats.AgentStats = agentStats.Select(x => new Data.Models.AgentStats()
                 {
                     AgentId        = Guid.Parse(x.Key),
-                    AgentName      = metaService.GetAgentName(x.Key),
+                    AgentName      = _metaService.GetAgentName(x.Key),
                     Kills          = agentStats[x.Key].Kills,
                     Score          = agentStats[x.Key].Score,
                     Deaths         = agentStats[x.Key].Deaths,
@@ -78,7 +81,7 @@ namespace Hackathon.Core.Blitz
                     WeaponStats = agentStats[x.Key].WeaponDamageStats.Select(x => new Data.Models.WeaponStats()
                     {
                         WeaponId       = Guid.Parse(x.Key),
-                        WeaponName     = metaService.GetWeaponName(x.Key),
+                        WeaponName     = _metaService.GetWeaponName(x.Key),
                         TotalKillRange = x.Value.TotalKillRange,
                         AltFireKills   = x.Value.AltFireKills,
                         Headshots      = x.Value.Headshots,
@@ -107,6 +110,5 @@ namespace Hackathon.Core.Blitz
 
             return playerStats;
         }
-
     }
 }

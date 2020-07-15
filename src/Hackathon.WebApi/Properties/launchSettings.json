@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/player?playerId=zeato-euw",
+      "launchUrl": "api/player/zeato-euw",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

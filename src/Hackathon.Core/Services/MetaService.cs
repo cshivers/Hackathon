@@ -1,39 +1,21 @@
 ﻿using Hackathon.Data;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Hackathon.Core.Services
 {
     public class MetaService
+        : IMetaService
     {
-        private readonly MetaConfig metaConfig;
+        private readonly MetaConfig _metaConfig;
+
         public MetaService(IOptions<MetaConfig> metaConfig)
         {
-            this.metaConfig = metaConfig?.Value ?? throw new ArgumentNullException(nameof(metaConfig));
-        }
-        public string GetAgentName(string id)
-        {
-            var key = id;
-            if (!metaConfig.Agents.ContainsKey(key)) return null;
-
-            return metaConfig.Agents[key];
-        }
-        public string GetRankTier(int id)
-        {
-            var key = id.ToString();
-            if (!metaConfig.RankTiers.ContainsKey(key)) return null;
-
-            return metaConfig.RankTiers[key];
-        }
-        public string GetWeaponName(string id)
-        {
-            var key = id;
-            if (!metaConfig.Weapons.ContainsKey(key)) return null;
-
-            return metaConfig.Weapons[key];
+            _metaConfig = metaConfig?.Value ?? throw new ArgumentNullException(nameof(metaConfig));
         }
 
+        public string GetAgentName(string id) => _metaConfig.Agents.TryGetValue(id, out string agent) ? agent : null;
+        public string GetRankTier(int id) => _metaConfig.Agents.TryGetValue(id.ToString(), out string rank) ? rank : null;
+        public string GetWeaponName(string id) => _metaConfig.Weapons.TryGetValue(id, out string weapon) ? weapon : null;
     }
 }
