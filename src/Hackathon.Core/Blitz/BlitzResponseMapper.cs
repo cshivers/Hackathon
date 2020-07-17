@@ -39,11 +39,16 @@ namespace Hackathon.Core.Blitz
 
             Data.Models.Stats playerStats = new Data.Models.Stats()
             {
-                Kills = competitiveStatsDetail.Kills,
-                Deaths = competitiveStatsDetail.Deaths,
-                Assists = competitiveStatsDetail.Assists,
-                Plants = competitiveStatsDetail.Plants,
-                Defuses = competitiveStatsDetail.Defuses
+                Kills                         = competitiveStatsDetail.Kills,
+                Deaths                        = competitiveStatsDetail.Deaths,
+                Assists                       = competitiveStatsDetail.Assists,
+                Plants                        = competitiveStatsDetail.Plants,
+                Defuses                       = competitiveStatsDetail.Defuses,
+                FirstBloodsGiven              = competitiveStatsDetail.FirstBloodsGiven,
+                FirstBloodsTaken              = competitiveStatsDetail.FirstBloodsTaken,
+                RoundsLostWhenFirstBloodGiven = competitiveStatsDetail.RoundsLostWhenFirstBloodGiven,
+                RoundsWonWhenFirstBloodTaken  = competitiveStatsDetail.RoundsWonWhenFirstBloodTaken,
+                LastKills                     = competitiveStatsDetail.LastKills,
             };
             
             playerStats.WeaponStats = weaponStats.Select(x => new Data.Models.WeaponStats()
@@ -52,6 +57,7 @@ namespace Hackathon.Core.Blitz
                 WeaponName     = _metaService.GetWeaponName(x.Key),
                 TotalKillRange = weaponStats[x.Key].TotalKillRange,
                 AltFireKills   = weaponStats[x.Key].AltFireKills,
+                Kills          = weaponStats[x.Key].Kills,
                 Headshots      = weaponStats[x.Key].Headshots,
                 Bodyshots      = weaponStats[x.Key].Bodyshots,
                 Legshots       = weaponStats[x.Key].Legshots,
@@ -93,6 +99,7 @@ namespace Hackathon.Core.Blitz
                         WeaponName     = _metaService.GetWeaponName(x.Key),
                         TotalKillRange = x.Value.TotalKillRange,
                         AltFireKills   = x.Value.AltFireKills,
+                        Kills          = x.Value.Kills,
                         Headshots      = x.Value.Headshots,
                         Bodyshots      = x.Value.Bodyshots,
                         Damage         = x.Value.Damage,
@@ -106,13 +113,7 @@ namespace Hackathon.Core.Blitz
                         Ability1Casts = agentStats[x.Key].AbilityCasts.Ability1Casts,
                         Ability2Casts = agentStats[x.Key].AbilityCasts.Ability2Casts,
                         UltimateCasts = agentStats[x.Key].AbilityCasts.UltimateCasts,
-                    },
-
-                    FirstBloodsTaken              = agentStats[x.Key].FirstBloodsTaken,
-                    FirstBloodsGiven              = agentStats[x.Key].FirstBloodsGiven,
-                    RoundsWonWhenFirstBloodTaken  = agentStats[x.Key].RoundsWonWhenFirstBloodTaken,
-                    RoundsLostWhenFirstBloodGiven = agentStats[x.Key].RoundsLostWhenFirstBloodGiven,
-                    LastKills                     = agentStats[x.Key].LastKills,
+                    }
                 }).ToList();
 
             return playerStats;
