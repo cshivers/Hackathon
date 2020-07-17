@@ -10,23 +10,28 @@ namespace Hackathon.Core.Blitz.Models
         public Ranks Ranks { get; set; }
         public Stats Stats { get; set; }
     }
+
     public class Ranks
     {
         public RankDetail Competitive { get; set; }
     }
+
     public class RankDetail
     {
         public int Tier { get; set; }
     }
+
     public class Stats
     {
         public StatsDetail Competitive { get; set; }
     }
+
     public class StatsDetail
     {
         public CompetitiveStatsDetail Last20 { get; set; }
         public CompetitiveStatsDetail Career { get; set; }
     }
+
     public class CompetitiveStatsDetail
     {
         public int Kills { get; set; }
@@ -34,10 +39,16 @@ namespace Hackathon.Core.Blitz.Models
         public int Assists { get; set; }
         public int Plants { get; set; }
         public int Defuses { get; set; }
+        public int FirstBloodsTaken { get; set; }
+        public int FirstBloodsGiven { get; set; }
+        public int RoundsWonWhenFirstBloodTaken { get; set; }
+        public int RoundsLostWhenFirstBloodGiven { get; set; }
+        public int LastKills { get; set; }
         public Dictionary<string, DamageStats> WeaponDamageStats { get; set; }
         public Dictionary<string, AgentStats> AgentsStats { get; set; }
         public Dictionary<string, MapStats> MapStats { get; set; }
     }
+
     public class DamageStats
     {
         public int Kills { get; set; }
@@ -56,6 +67,7 @@ namespace Hackathon.Core.Blitz.Models
 
         public int RoundsUsed { get; set; }
     }
+
     public class AgentStats
     {
         public int Kills { get; set; }
@@ -70,13 +82,8 @@ namespace Hackathon.Core.Blitz.Models
         public Dictionary<string, DamageStats> WeaponDamageStats { get; set; }
         public int Economy { get; set; }
         public AbilityCasts AbilityCasts { get; set; }
-        public int FirstBloodsTaken { get; set; }
-        public int FirstBloodsGiven { get; set; }
-        public int RoundsWonWhenFirstBloodTaken { get; set; }
-        public int RoundsLostWhenFirstBloodGiven { get; set; }
-        public int LastKills { get; set; }
-
     }
+
     public class AbilityCasts
     {
         public int GrenadeCasts { get; set; }
@@ -84,6 +91,7 @@ namespace Hackathon.Core.Blitz.Models
         public int Ability2Casts { get; set; }
         public int UltimateCasts { get; set; }
     }
+
     public class MapStats
     {
         public int Wins { get; set; }

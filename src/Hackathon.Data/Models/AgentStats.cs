@@ -20,13 +20,6 @@ namespace Hackathon.Data.Models
         public List<WeaponStats> WeaponStats { get; set; }
         public int Economy { get; set; }
         public AbilityCasts AbilityCasts { get; set; }
-        public int Plants { get; set; }
-        public int Defuses { get; set; }
-        public int FirstBloodsTaken { get; set; }
-        public int FirstBloodsGiven { get; set; }
-        public int RoundsWonWhenFirstBloodTaken { get; set; }
-        public int RoundsLostWhenFirstBloodGiven { get; set; }
-        public int LastKills { get; set; }
 
     }
 
