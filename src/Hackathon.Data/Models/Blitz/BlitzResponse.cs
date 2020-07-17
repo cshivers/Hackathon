@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Hackathon.Core.Blitz.Models
 {
@@ -32,6 +30,10 @@ namespace Hackathon.Core.Blitz.Models
     public class CompetitiveStatsDetail
     {
         public int Kills { get; set; }
+        public int Deaths { get; set; }
+        public int Assists { get; set; }
+        public int Plants { get; set; }
+        public int Defuses { get; set; }
         public Dictionary<string, DamageStats> WeaponDamageStats { get; set; }
         public Dictionary<string, AgentStats> AgentsStats { get; set; }
         public Dictionary<string, MapStats> MapStats { get; set; }
@@ -68,8 +70,6 @@ namespace Hackathon.Core.Blitz.Models
         public Dictionary<string, DamageStats> WeaponDamageStats { get; set; }
         public int Economy { get; set; }
         public AbilityCasts AbilityCasts { get; set; }
-        public int Plants { get; set; }
-        public int Defuses { get; set; }
         public int FirstBloodsTaken { get; set; }
         public int FirstBloodsGiven { get; set; }
         public int RoundsWonWhenFirstBloodTaken { get; set; }
