@@ -24,7 +24,7 @@ namespace Hackathon.Core.Blitz
                 Id            = Guid.Parse(blitzResponse.Id),
                 Name          = $"{blitzResponse.Name} #{blitzResponse.Tag}",
                 Rank          = _metaService.GetRankTier(blitzResponse.Ranks.Competitive.Tier),
-                RankImage = _metaService.GetRankImage(blitzResponse.Ranks.Competitive.Tier),
+                RankImage     = _metaService.GetRankImage(blitzResponse.Ranks.Competitive.Tier),
                 LifetimeStats = MapToPlayerStats(blitzResponse.Stats.Competitive.Career),
                 RecentStats   = MapToPlayerStats(blitzResponse.Stats.Competitive.Last20),
             };
@@ -33,11 +33,19 @@ namespace Hackathon.Core.Blitz
 
         private Data.Models.Stats MapToPlayerStats(CompetitiveStatsDetail competitiveStatsDetail)
         {
-            Data.Models.Stats playerStats = new Data.Models.Stats();
             Dictionary<string, DamageStats> weaponStats = competitiveStatsDetail.WeaponDamageStats;
             Dictionary<string, Models.MapStats> mapStats = competitiveStatsDetail.MapStats;
             Dictionary<string, Models.AgentStats> agentStats = competitiveStatsDetail.AgentsStats;
 
+            Data.Models.Stats playerStats = new Data.Models.Stats()
+            {
+                Kills = competitiveStatsDetail.Kills,
+                Deaths = competitiveStatsDetail.Deaths,
+                Assists = competitiveStatsDetail.Assists,
+                Plants = competitiveStatsDetail.Plants,
+                Defuses = competitiveStatsDetail.Defuses
+            };
+            
             playerStats.WeaponStats = weaponStats.Select(x => new Data.Models.WeaponStats()
             {
                 WeaponId       = Guid.Parse(x.Key),
@@ -100,8 +108,6 @@ namespace Hackathon.Core.Blitz
                         UltimateCasts = agentStats[x.Key].AbilityCasts.UltimateCasts,
                     },
 
-                    Plants                        = agentStats[x.Key].Plants,
-                    Defuses                       = agentStats[x.Key].Defuses,
                     FirstBloodsTaken              = agentStats[x.Key].FirstBloodsTaken,
                     FirstBloodsGiven              = agentStats[x.Key].FirstBloodsGiven,
                     RoundsWonWhenFirstBloodTaken  = agentStats[x.Key].RoundsWonWhenFirstBloodTaken,
