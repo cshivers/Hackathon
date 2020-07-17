@@ -9,6 +9,7 @@ namespace Hackathon.Data
     {
         public Dictionary<string, string> Agents { get; set; }
         public Dictionary<string, string> RankTiers { get; set; }
+        public Dictionary<string, string> RankImages { get; set; }
         public Dictionary<string,string> Weapons { get; set; }
     }
 }

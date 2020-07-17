@@ -24,6 +24,7 @@ namespace Hackathon.Core.Blitz
                 Id            = Guid.Parse(blitzResponse.Id),
                 Name          = $"{blitzResponse.Name} #{blitzResponse.Tag}",
                 Rank          = _metaService.GetRankTier(blitzResponse.Ranks.Competitive.Tier),
+                RankImage = _metaService.GetRankImage(blitzResponse.Ranks.Competitive.Tier),
                 LifetimeStats = MapToPlayerStats(blitzResponse.Stats.Competitive.Career),
                 RecentStats   = MapToPlayerStats(blitzResponse.Stats.Competitive.Last20),
             };

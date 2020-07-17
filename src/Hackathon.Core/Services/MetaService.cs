@@ -16,6 +16,7 @@ namespace Hackathon.Core.Services
 
         public string GetAgentName(string id) => _metaConfig.Agents.TryGetValue(id, out string agent) ? agent : null;
         public string GetRankTier(int id) => _metaConfig.RankTiers.TryGetValue(id.ToString(), out string rank) ? rank : null;
+        public string GetRankImage(int id) => _metaConfig.RankImages.TryGetValue(id.ToString(), out string rankImage) ? rankImage : null;
         public string GetWeaponName(string id) => _metaConfig.Weapons.TryGetValue(id, out string weapon) ? weapon : null;
     }
 }
