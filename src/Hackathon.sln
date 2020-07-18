@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.WebApi", "Hackathon.WebApi\Hackathon.WebApi.csproj", "{822F750D-5706-4B7F-88BF-B4484B07F9A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackathon.WebApi", "Hackathon.WebApi\Hackathon.WebApi.csproj", "{822F750D-5706-4B7F-88BF-B4484B07F9A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Core", "Hackathon.Core\Hackathon.Core.csproj", "{3214F17A-99A0-4D8E-9D34-5B8174401428}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackathon.Core", "Hackathon.Core\Hackathon.Core.csproj", "{3214F17A-99A0-4D8E-9D34-5B8174401428}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon.Data", "Hackathon.Data\Hackathon.Data.csproj", "{CB72610F-5408-4938-B3E0-25625FAA5BBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackathon.Data", "Hackathon.Data\Hackathon.Data.csproj", "{CB72610F-5408-4938-B3E0-25625FAA5BBC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hackathon.DiscordBot", "Hackathon.DiscordBot\Hackathon.DiscordBot.csproj", "{28D1962C-5C91-4B9B-8C84-9698A98A238B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{CB72610F-5408-4938-B3E0-25625FAA5BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB72610F-5408-4938-B3E0-25625FAA5BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB72610F-5408-4938-B3E0-25625FAA5BBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28D1962C-5C91-4B9B-8C84-9698A98A238B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D1962C-5C91-4B9B-8C84-9698A98A238B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D1962C-5C91-4B9B-8C84-9698A98A238B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D1962C-5C91-4B9B-8C84-9698A98A238B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

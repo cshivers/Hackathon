@@ -14,6 +14,10 @@ namespace Hackathon.Data.Models
         public int RoundsWonWhenFirstBloodTaken { get; set; }
         public int RoundsLostWhenFirstBloodGiven { get; set; }
         public int LastKills { get; set; }
+        public int Matches { get; set; }
+        public int Wins { get; set; }
+        public int RoundsPlayed { get; set; }
+        public int RoundsWon { get; set; }
         public List<AgentStats> AgentStats { get; set; }
         public List<MapStats> MapStats { get; set; }
         public List<WeaponStats> WeaponStats { get; set; }

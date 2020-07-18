@@ -3,12 +3,19 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Hackathon.DiscordBot</AssemblyName>
+    <RootNamespace>Hackathon.DiscordBot</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="DSharpPlus" Version="4.0.0-nightly-00709" />
     <PackageReference Include="DSharpPlus.CommandsNext" Version="4.0.0-nightly-00709" />
     <PackageReference Include="DSharpPlus.Interactivity" Version="4.0.0-nightly-00709" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hackathon.Data\Hackathon.Data.csproj" />
   </ItemGroup>
 
 </Project>
