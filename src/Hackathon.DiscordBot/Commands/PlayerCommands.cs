@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Hackathon.DiscordBot.Commands
 {
     public class PlayerCommands 
-        : BaseCommandModule, IPlayerCommands
+        : BaseCommandModule
     {
         private readonly IHttpClientFactory _httpClientFactory;
         public PlayerCommands(IHttpClientFactory httpClientFactory)

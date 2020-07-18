@@ -11,8 +11,6 @@ namespace Hackathon.DiscordBot
             ServiceProvider serviceProvder = new ServiceCollection()
                 .AddHttpClient()
                 .AddSingleton<IBot, Bot>()
-                .AddSingleton<IPlayerCommands, PlayerCommands>()
-                .AddSingleton<IWeaponCommands, WeaponCommands>()
                 .BuildServiceProvider();
 
             IBot bot = serviceProvder.GetService<IBot>();
