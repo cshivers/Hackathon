@@ -23,6 +23,12 @@ namespace Hackathon.DiscordBot.Commands
         [Description("Returns some statistics about a player.")]
         public async Task Add(CommandContext ctx, [Description("Player ID")][RemainingText] string playerId)
         {
+            if (string.IsNullOrEmpty(playerId))
+            {
+                await ctx.Channel.SendMessageAsync("Error finding user! Make sure to include the tag (eg. Valorant#123)").ConfigureAwait(false);
+                return;
+            }
+
             string playerTag = playerId.Replace('#', '-');
             HttpClient client = _httpClientFactory.CreateClient();
             HttpResponseMessage response = await client.GetAsync($"https://hackathon.devsite.in/api/player/{playerTag.ToLower()}");
