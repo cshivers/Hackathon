@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 
 namespace Hackathon.DiscordBot.Commands
 {
-    public class PlayerCommands 
-        : BaseCommandModule
+    public class PlayerCommands
     {
         private readonly IHttpClientFactory _httpClientFactory;
         public PlayerCommands(IHttpClientFactory httpClientFactory)
@@ -80,11 +79,8 @@ namespace Hackathon.DiscordBot.Commands
             DiscordEmbedBuilder embed = new DiscordEmbedBuilder()
             {
                 Title = player.Name,
-                Color = DiscordColor.DarkRed,
-                Thumbnail = new DiscordEmbedBuilder.EmbedThumbnail()
-                {
-                    Url = player.RankImage,
-                },
+                Color = DiscordColor.DarkRed, 
+                ThumbnailUrl = player.RankImage
             };
 
             embed.AddField("**General Info**", @$"**Current Rank**: {player.Rank}

@@ -3,8 +3,7 @@ using System.Net.Http;
 
 namespace Hackathon.DiscordBot.Commands
 {
-    public class WeaponCommands 
-        : BaseCommandModule
+    public class WeaponCommands
     {
         private readonly IHttpClientFactory _httpClientFactory;
         public WeaponCommands(IHttpClientFactory httpClientFactory)
