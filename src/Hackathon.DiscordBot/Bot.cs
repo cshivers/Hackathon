@@ -3,8 +3,10 @@ using DSharpPlus.CommandsNext;
 using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using Hackathon.DiscordBot.Commands;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Hackathon.DiscordBot
@@ -14,7 +16,7 @@ namespace Hackathon.DiscordBot
     {
         private readonly IServiceProvider _serviceProvider;
         private DiscordClient _client;
-        private CommandsNextExtension _commands;
+        private CommandsNextModule _commands;
 
         public Bot(IServiceProvider serviceProvider)
         {
@@ -42,7 +44,7 @@ namespace Hackathon.DiscordBot
             // Connect
             await _client.ConnectAsync();
 
-            _client.GuildDownloadCompleted += OnGuildDownloadComplete;
+            _client.GuildAvailable += OnGuildAvailable;
 
             // Prevents connection from terminating
             await Task.Delay(-1);
@@ -62,16 +64,18 @@ namespace Hackathon.DiscordBot
 
         private CommandsNextConfiguration GetCommandsNextConfiguration()
         {
+            using var builder = new DependencyCollectionBuilder();
+            builder.AddInstance(_serviceProvider.GetService<IHttpClientFactory>());
+
             return new CommandsNextConfiguration
             {
-                StringPrefixes = new string[] { "v!" },
+                StringPrefix = "v!",
                 EnableMentionPrefix = true,
                 EnableDms = true,
                 CaseSensitive = false,
                 EnableDefaultHelp = true,
                 IgnoreExtraArguments = false,
-                DmHelp = false,
-                Services = _serviceProvider
+                Dependencies = builder.Build()
             };
         }
 
@@ -81,10 +85,10 @@ namespace Hackathon.DiscordBot
             return Task.CompletedTask;
         }
 
-        private Task OnGuildDownloadComplete(GuildDownloadCompletedEventArgs e)
+        private Task OnGuildAvailable(GuildCreateEventArgs e)
         {
-            _client.UpdateStatusAsync(new DiscordActivity($"{_client.Guilds.Count} servers | v!", ActivityType.Watching));
-            return Task.CompletedTask;
+            var count = _client.Guilds.Count;
+            return _client.UpdateStatusAsync(new DiscordGame($"with {count} server{(count > 1 ? "s" : "")} | v!"), null);
         }
     }
 }

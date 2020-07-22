@@ -53,7 +53,7 @@ namespace Hackathon.Core.Blitz.Models
     {
         public int Kills { get; set; }
 
-        public double TotalKillRange { get; set; }
+        public double? TotalKillRange { get; set; }
 
         public int AltFireKills { get; set; }
 

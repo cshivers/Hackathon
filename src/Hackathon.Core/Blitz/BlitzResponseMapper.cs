@@ -55,7 +55,7 @@ namespace Hackathon.Core.Blitz
             {
                 WeaponId       = Guid.Parse(x.Key),
                 WeaponName     = _metaService.GetWeaponName(x.Key),
-                TotalKillRange = weaponStats[x.Key].TotalKillRange,
+                TotalKillRange = weaponStats[x.Key].TotalKillRange ?? 0,
                 AltFireKills   = weaponStats[x.Key].AltFireKills,
                 Kills          = weaponStats[x.Key].Kills,
                 Headshots      = weaponStats[x.Key].Headshots,
@@ -97,7 +97,7 @@ namespace Hackathon.Core.Blitz
                     {
                         WeaponId       = Guid.Parse(x.Key),
                         WeaponName     = _metaService.GetWeaponName(x.Key),
-                        TotalKillRange = x.Value.TotalKillRange,
+                        TotalKillRange = x.Value.TotalKillRange ?? 0,
                         AltFireKills   = x.Value.AltFireKills,
                         Kills          = x.Value.Kills,
                         Headshots      = x.Value.Headshots,
